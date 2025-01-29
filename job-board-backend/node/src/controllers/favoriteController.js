@@ -1,5 +1,5 @@
 const Favorite = require('../models/Favorite');
-const Job = require('../models/Job'); // Importăm modelul Job
+const Job = require('../models/Job'); 
 
 
 // Adaugă un job la favorite

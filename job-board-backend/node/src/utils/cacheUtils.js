@@ -1,4 +1,4 @@
-const redisClient = require('../../redis.js'); // Import conexiunea Redis
+const redisClient = require('../../redis.js'); 
 
 const invalidateCache = async (userId, keysToInvalidate) => {
     try {

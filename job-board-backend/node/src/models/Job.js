@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-const User = require('./User'); // Importăm User pentru relații
+const User = require('./User'); 
 
 const Job = sequelize.define('Job', {
   id: {

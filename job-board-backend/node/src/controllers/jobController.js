@@ -1,8 +1,8 @@
 const Job = require('../models/Job');
 const axios = require('axios');
 const path = require('path');
-const CV = require('../models/CV'); // Modelele tale Sequelize
-const redisClient = require('../../redis.js'); // Import conexiunea Redis
+const CV = require('../models/CV'); 
+const redisClient = require('../../redis.js'); 
 
 
 const fetchExternalJobs = async (req, res) => {
@@ -42,7 +42,7 @@ const fetchExternalJobs = async (req, res) => {
         return matchesTitle && matchesCompany && matchesLocation && matchesRemote;
       });
 
-      // Transformă joburile filtrate în formatul dorit
+      // Transformă joburile filtrate în formatul standard
       const jobs = filteredJobs.map((job) => ({
         id: job.id,
         role: job.role,

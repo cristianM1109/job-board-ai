@@ -4,7 +4,7 @@ const path = require('path');
 const CV = require('../models/CV');
 const Favorite = require('../models/Favorite');
 const Job = require('../models/Job');
-const redisClient = require('../../redis.js'); // Import conexiunea Redis
+const redisClient = require('../../redis.js'); 
 
 const router = express.Router();
 
@@ -30,7 +30,7 @@ const calculateCompatibilityScores = async (req, res) => {
     const fileName = path.basename(latestCV.filePath);
     const adjustedCvPath = path.join('uploads', fileName);
     
-    // 3. Obține joburile favorite
+    //  Obține joburile favorite
     const favorites = await Favorite.findAll({
       where: { userId },
       include: {
@@ -51,7 +51,7 @@ const calculateCompatibilityScores = async (req, res) => {
       keywords: favorite.job.keywords || [],
     }));
 
-    // 4. Trimite datele către Flask
+    // Trimite datele către Flask
     const flaskEndpoint = 'http://127.0.0.1:8000/process-cv';
     const payload = {
       cv_file_path: adjustedCvPath,
@@ -62,11 +62,11 @@ const calculateCompatibilityScores = async (req, res) => {
       headers: { 'Content-Type': 'application/json' },
     });
 
-    // 5. Salvează scorurile în cache cu un timp de expirare
+    // Salvează scorurile în cache cu un timp de expirare
     const scores = flaskResponse.data.compatibility_scores;
     await redisClient.set(cacheKey, JSON.stringify(scores), { EX: 3600 }); // Expirare 1 oră
 
-    // 6. Returnează scorurile către frontend
+    // Returnează scorurile către frontend
     res.status(200).json({ scores });
   } catch (error) {
     console.error('Eroare la calcularea scorurilor:', error.message);
@@ -84,14 +84,14 @@ const calculateKeywordCompatibilityScores = async (req, res) => {
   const cacheKey = `keyword_compatibility_scores_user_${userId}`; // Cheie unică pentru cache
 
   try {
-    // 1. Verifică dacă scorurile sunt deja în cache
+    //  Verifică dacă scorurile sunt deja în cache
     const cachedScores = await redisClient.get(cacheKey);
     if (cachedScores) {
       console.log('Scorurile de compatibilitate cu cuvinte cheie au fost preluate din cache.');
       return res.status(200).json({ scores: JSON.parse(cachedScores) });
     }
 
-    // 2. Verifică dacă utilizatorul are un CV încărcat
+    //  Verifică dacă utilizatorul are un CV încărcat
     const userCVs = await CV.findAll({ where: { userId }, order: [['createdAt', 'DESC']] });
     if (!userCVs || userCVs.length === 0) {
       return res.status(400).json({ error: 'Nu există niciun CV asociat acestui utilizator.' });
@@ -102,7 +102,7 @@ const calculateKeywordCompatibilityScores = async (req, res) => {
     const fileName = path.basename(latestCV.filePath);
     const adjustedCvPath = path.join('uploads', fileName);
 
-    // 3. Obține joburile favorite
+    // Obține joburile favorite
     const favorites = await Favorite.findAll({
       where: { userId },
       include: {
@@ -123,7 +123,7 @@ const calculateKeywordCompatibilityScores = async (req, res) => {
       keywords: favorite.job.keywords || [],
     }));
 
-    // 4. Trimite datele către Flask
+    //  Trimite datele către Flask
     const flaskEndpoint = 'http://127.0.0.1:8000/keyword-compatibility';
     const payload = {
       cv_file_path: adjustedCvPath,
@@ -134,11 +134,11 @@ const calculateKeywordCompatibilityScores = async (req, res) => {
       headers: { 'Content-Type': 'application/json' },
     });
 
-    // 5. Salvează scorurile în cache cu un timp de expirare
+    // Salvează scorurile în cache cu un timp de expirare
     const scores = flaskResponse.data.compatibility_scores;
     await redisClient.set(cacheKey, JSON.stringify(scores), { EX: 3600 }); // Expirare 1 oră
 
-    // 6. Returnează scorurile către frontend
+    //  Returnează scorurile către frontend
     res.status(200).json({ scores });
   } catch (error) {
     console.error('Eroare la calcularea scorurilor cu cuvinte cheie:', error.message);

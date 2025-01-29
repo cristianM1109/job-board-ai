@@ -1,13 +1,13 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('../models/User'); // Modelul User
+const User = require('../models/User'); 
 require('dotenv').config();
 const JWT_SECRET = process.env.JWT_SECRET;
 
 const router = express.Router();
 
-// Înregistrare
+
 	
 const registerUser = async (req, res) => {
   const { username, password } = req.body;

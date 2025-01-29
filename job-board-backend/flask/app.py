@@ -82,7 +82,6 @@ def process_cv():
     try:
         script_dir = os.path.dirname(os.path.abspath(__file__))
         full_cv_path = os.path.join(os.pardir, "node", cv_file_path)
- #       full_cv_path = os.path.abspath(os.path.join(os.pardir, "node", cv_file_path))
         temp_folder = os.path.join(script_dir, "temp")
         os.makedirs(temp_folder, exist_ok=True)
         temp_cv_path = os.path.join(temp_folder, "temp_cv.pdf")
@@ -131,7 +130,7 @@ def preprocess_text(text):
     stop_words = set(stopwords.words("english"))
     return ' '.join([word for word in words if word not in stop_words])
     
-# Listă de cuvinte relevante (extensibilă)
+# Listă de cuvinte relevante 
 RELEVANT_WORDS = set([
     # Limbaje de programare
     "python", "java", "javascript", "typescript", "c++", "c#", "golang", "ruby", 

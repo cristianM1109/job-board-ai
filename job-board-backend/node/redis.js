@@ -1,7 +1,7 @@
 const redis = require('redis');
 
 const redisClient = redis.createClient({
-  url: 'redis://localhost:6380', // Înlocuiește cu adresa serverului Redis dacă este diferită
+  url: 'redis://localhost:6380', 
 });
 
 redisClient.on('connect', () => {

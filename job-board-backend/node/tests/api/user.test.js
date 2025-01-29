@@ -1,10 +1,10 @@
 const request = require('supertest');
-const app = require('../../app'); // Aplicația Express
-const sequelize = require('../../src/config/database'); // Configurația bazei de date
-const User = require('../../src/models/User'); // Modelul User
+const app = require('../../app'); 
+const sequelize = require('../../src/config/database'); 
+const User = require('../../src/models/User'); 
 const jwt = require('jsonwebtoken');
 const redisClient = require('../../redis');
-const bcrypt = require('bcryptjs'); // Adaugă importul pentru bcrypt
+const bcrypt = require('bcryptjs'); 
 
 describe('User API', () => {
   beforeAll(async () => {
