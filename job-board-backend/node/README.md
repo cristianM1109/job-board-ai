@@ -2,7 +2,7 @@
 
 This is the primary backend API, built with Node.js and Express.
 
-## 🛠 Installation & Setup
+##  Installation & Setup
 ```sh
 npm install
 npm start
@@ -31,5 +31,5 @@ FINDWORK_API_KEY='API_KEY'
 JWT_SECRET=mongodb:'job_app_secret_key'
 FLASK_SERVICE_URL=http://localhost:4500/process-cv'
 
-🧪 Running Tests
+ Running Tests
 npm test

@@ -2,17 +2,17 @@
 
 This is a Python-based AI service for resume parsing and job recommendations.
 
-## 🛠 Installation & Setup
+##  Installation & Setup
 ```sh
 python3 -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 python app.py
 
-🚀 Features
-📄 Resume parsing with PyResparser
-🔎 Job matching using Sentence Transformers
-🤖 AI-powered recommendations
+ Features
+ Resume parsing with PyResparser
+ Job matching using Sentence Transformers
+ AI-powered recommendations
 
 
 Endpoint	     		Method	Description

@@ -1,15 +1,15 @@
-# Job Board AI 📌
+# Job Board AI 
 
 A full-stack AI-powered job board application that provides job recommendations based on resume analysis.
 
-## 🚀 Features
-- 📂 **Upload and parse resumes** with AI (Flask + NLP)
-- 🤖 **Get job recommendations** based on resume match (Node.js + Python)
-- 💼 **Apply for jobs, save favorites, and get AI feedback**
-- 🔐 **Full authentication system** (JWT)
-- 🎨 **Frontend built with Angular**
+##  Features
+-  **Upload and parse resumes** with AI (Flask + NLP)
+-  **Get job recommendations** based on resume match (Node.js + Python)
+-  **Apply for jobs, save favorites, and get AI feedback**
+-  **Full authentication system** (JWT)
+-  **Frontend built with Angular**
 
-## 🏗 Project Structure
+##  Project Structure
 job-board-ai/
 │── job-board-frontend/       # Angular frontend
 │── job-board-backend/        # Node.js backend (primary)
@@ -20,9 +20,9 @@ job-board-ai/
 │── kubernetes/               # Kubernetes configuration
 │── .gitignore                # Git ignore rules
 │── README.md                 # Main project documentation\
-## 🛠 Installation & Setup
+##  Installation & Setup
 
-### **1️⃣ Clone the repository**
+### **Clone the repository**
 ```sh
 git clone https://github.com/yourusername/job-board-ai.git
 cd job-board-ai
