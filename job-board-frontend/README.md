@@ -25,3 +25,18 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## 🛠 Installation & Setup
+```sh
+npm install
+ng serve --host 0.0.0.0 --disable-host-check
+
+🚀 Features
+📋 Job listings with search and filtering
+📂 Upload and manage resumes
+🤖 AI-powered job recommendations
+
+🧪 Running Cypress E2E Tests
+npx cypress open
+
+
