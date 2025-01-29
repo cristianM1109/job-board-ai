@@ -1,0 +1,61 @@
+<div class="dashboard-container">
+    <!-- Secțiunea 1: Joburi Recomandate -->
+ <div *ngIf="userCvs.length > 0">
+  <section class="recommendation-section">
+    <h2>🌟 Recommended for you</h2>
+
+    <!-- Spinner afișat în timpul încărcării -->
+    <div *ngIf="isLoadingRecommendations" class="spinner-container">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Joburi recomandate -->
+    <div *ngIf="!isLoadingRecommendations" class="job-cards-container">
+      <div class="job-card recommended" *ngFor="let job of recommendedJobs">
+        <h3>{{ job.title }}</h3>
+        <p><strong>Companie:</strong> {{ job.company }}</p>
+        <p><strong>Locație:</strong> {{ job.location }}</p>
+        <button class="details-button" (click)="toggleDetails(job.id)">Vezi Detalii</button>
+        <div class="job-details" *ngIf="job.showDetails">
+          <p>{{ job.description }}</p>
+          <button class="apply-button" (click)="applyForJob(job.url)">Aplică</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+    <!-- Secțiunea 2: Joburi Favorite -->
+    <section class="favorite-jobs-section">
+      <h2>💼 Joburi Favorite</h2>
+      <div class="job-cards-container">
+        <div class="job-card favorite" *ngFor="let job of favoriteJobs">
+          <h3>{{ job.title }}</h3>
+          <p><strong>Companie:</strong> {{ job.company }}</p>
+          <p><strong>Locație:</strong> {{ job.location }}</p>
+          <p><strong>Salariu:</strong> {{ job.salary || 'N/A' }}</p>
+          <button class="analyze-button" (click)="analyzeJob(job.id)" [disabled]="loadingJobId === job.id">
+            🔍 Obține Recomandări
+          </button>
+  
+          <!-- Spinner -->
+          <div class="spinner" *ngIf="loadingJobId === job.id"></div>
+  
+          <!-- Recomandări AI -->
+          <div class="recommendation-results" *ngIf="jobAnalysis?.jobId === job.id">
+            <h4>📊 Recomandări AI</h4>
+            <p *ngIf="jobAnalysis?.matched_skills?.length">
+              <strong>Abilități Potrivite:</strong> {{ jobAnalysis?.matched_skills?.join(', ') }}
+            </p>
+            <p *ngIf="jobAnalysis?.missing_skills?.length">
+              <strong>Abilități Lipsă:</strong> {{ jobAnalysis?.missing_skills?.join(', ') }}
+            </p>
+            <p *ngIf="jobAnalysis?.recommendations">
+              <strong>Recomandări:</strong>
+            </p>
+            <p>{{ jobAnalysis?.recommendations }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  

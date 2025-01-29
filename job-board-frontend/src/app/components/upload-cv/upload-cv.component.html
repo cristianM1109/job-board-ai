@@ -1,0 +1,47 @@
+<div class="upload-cv-container">
+    <h2>Upload Your CV</h2>
+    <form (submit)="uploadCV($event)">
+      <label for="file-upload" class="file-upload-label">
+        Select File
+        <input
+          id="file-upload"
+          type="file"
+          (change)="onFileSelected($event)"
+          accept=".pdf" 
+          required
+        />
+      </label>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!selectedFile">
+        Upload CV
+      </button>
+    </form>
+    <div *ngIf="uploadStatus" class="status-message">
+      {{ uploadStatus }}
+    </div>
+  </div>
+
+  <div class="uploaded-cvs-container">
+    <h2>Uploaded CVs</h2>
+    <div *ngIf="isLoading" class="loading-message">Loading...</div>
+    <div *ngIf="!isLoading && userCvs.length === 0" class="no-cvs-message">
+      You have no uploaded CVs.
+    </div>
+    <ul class="cv-list" *ngIf="!isLoading && userCvs.length > 0">
+      <li *ngFor="let cv of userCvs" class="cv-item">
+        <div class="cv-details">
+          <p><strong>Original Name:</strong> {{ cv.fileName }}</p>
+          <p><strong>Uploaded At:</strong> {{ cv.createdAt | date:'short' }}</p>
+        </div>
+        <div class="cv-actions">
+          <a [href]="'http://localhost:5000/' + cv.filePath" target="_blank" class="view-cv-link">
+            View CV
+          </a>
+          <button mat-raised-button color="warn" (click)="deleteCv(cv.id)">
+            Delete
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
+  
+  

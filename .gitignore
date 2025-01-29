@@ -1,47 +1,35 @@
-# Ignoră folderele generate automat de Node.js (Frontend și Backend)
-node_modules/
-npm-debug.log*
-yarn.lock
-package-lock.json
+job-board-backend_no_container/node/node_modules/
+job-board-frontend/node_modules/
 
-# Ignoră fișierele generate de Angular
-.angular/
-dist/
+# Ignoră mediul virtual Python din backend
+job-board-backend_no_container/flask/venv38/
 
-# Ignoră fișierele generate de Python (Flask)
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-venv/
-*.sqlite3
-*.db
-instance/
-.mypy_cache/
-temp/
-uploads/
-
-# Ignoră fișierele de configurare și cache
+# Alte fișiere comune care nu trebuie încărcate
 .DS_Store
-*.swp
 .idea/
 .vscode/
 *.log
-*.bak
+*.swp
 
-# Ignoră fișierele de configurare pentru medii și variabile de mediu
+# Ignoră fișierele generate de Angular
+job-board-frontend/dist/
+job-board-frontend/.angular/
+
+# Ignoră cache-ul Python
+job-board-backend_no_container/flask/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignoră fișierele de configurare sensibile
 .env
 .env.local
 .env.development
 .env.production
 .env.test
 
-# Ignoră fișierele Docker (dacă există containere)
-docker-compose.override.yml
-*.dockerfile
 
-# Ignoră rezultatele testelor și alte cache-uri
-coverage/
-cypress/screenshots/
-cypress/videos/
-jest-cache/
+# Ignoră SQLite și fișierele temporare Flask
+job-board-backend_no_container/flask/*.sqlite3
+job-board-backend_no_container/flask/temp/
+job-board-backend_no_container/flask/uploads/

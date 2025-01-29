@@ -1,0 +1,59 @@
+<div class="filters-container">
+  <input type="text" placeholder="Search by title" [(ngModel)]="filters.title" />
+  <input type="text" placeholder="Search by company" [(ngModel)]="filters.company" />
+  <input type="text" placeholder="Search by location" [(ngModel)]="filters.location" />
+  <select [(ngModel)]="filters.remote">
+    <option value="">All</option>
+    <option value="true">Remote</option>
+    <option value="false">On-site</option>
+  </select>
+  <button (click)="applyFilters()">Apply Filters</button>
+  <button (click)="resetFilters()">Reset Filters</button>
+</div>
+
+<div class="external-jobs-container">
+  <h2>🌟 Available Jobs</h2>
+
+  <div *ngIf="isLoading" class="loading-spinner-container">
+    <div class="spinner"></div>
+  </div>
+
+  <div *ngIf="!isLoading && currentPageJobs.length === 0" class="no-jobs-message">
+    <p>No jobs available at the moment.</p>
+  </div>
+
+  <div *ngIf="!isLoading && currentPageJobs.length > 0" class="job-cards-container">
+    <div *ngFor="let job of currentPageJobs" class="job-card">
+      <div class="job-header">
+        <img *ngIf="job.logo" [src]="job.logo" alt="{{ job.companyName }} logo" class="job-logo" />
+        <div class="job-info">
+          <h3>{{ job.role }}</h3>
+          <p>{{ job.companyName }}</p>
+          <p><strong>Location:</strong> {{ job.location }}</p>
+        </div>
+      </div>
+      <p class="job-description">
+        {{ showFullDescription[job.id] ? job.description : (job.description | slice: 0: 100) + '...' }}
+      </p>
+      <div class="job-actions">
+        <button (click)="toggleDescription(job.id)" class="toggle-button">
+          {{ showFullDescription[job.id] ? 'Show Less' : 'Show More' }}
+        </button>
+        <button *ngIf="authService.isAuthenticated() | async" (click)="addToFavorites(job)" class="add-favorite-button">
+          Add to Favorites
+        </button>
+        <a [href]="job.url" target="_blank" class="details-button">Go to JobPage</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="pagination" *ngIf="!isFiltering">
+    <button mat-raised-button color="primary" (click)="previousPage()" [disabled]="currentPage === 1">
+      Previous
+    </button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button mat-raised-button color="primary" (click)="nextPage()" [disabled]="currentPage === totalPages">
+      Next
+    </button>
+  </div>
+</div>

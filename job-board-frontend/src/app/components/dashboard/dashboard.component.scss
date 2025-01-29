@@ -1,0 +1,133 @@
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+  
+    h2 {
+      color: #004080;
+      text-align: center;
+      margin-bottom: 30px;
+      background-color: #f0f8ff;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  
+    .job-cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+  
+    .job-card {
+      background: linear-gradient(145deg, #e0f7fa, #b2ebf2);
+      border: 1px solid #004080;
+      border-radius: 12px;
+      padding: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+      &:hover {
+        transform: scale(1.03);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+      }
+  
+      h3 {
+        color: #004080;
+        font-size: 1.5em;
+        margin-bottom: 10px;
+      }
+  
+      p {
+        margin: 5px 0;
+      }
+  
+      button {
+        margin-top: 10px;
+        background-color: #004080;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+  
+        &:hover {
+          background-color: #0066cc;
+        }
+  
+        &:disabled {
+          background-color: #ccc;
+          cursor: not-allowed;
+        }
+      }
+  
+      &.recommended {
+        border-left: 4px solid #00bfa5;
+      }
+  
+      &.favorite {
+        border-left: 4px solid #ff6f61;
+      }
+  
+      .spinner {
+        margin: 10px auto;
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #004080;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        animation: spin 1s linear infinite;
+      }
+  
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+  
+      .recommendation-results {
+        margin-top: 20px;
+        background-color: #e3f2fd;
+        padding: 10px;
+        border-radius: 8px;
+        border-left: 4px solid #64b5f6;
+  
+        h4 {
+          color: #1565c0;
+        }
+  
+        p {
+          margin: 5px 0;
+        }
+      }
+    }
+  }
+  .spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+  }
+  
+  .spinner {
+    border: 4px solid #f3f3f3; /* Gri deschis */
+    border-top: 4px solid #3498db; /* Albastru */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }

@@ -1,0 +1,86 @@
+/* Container general */
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Titlul formularului */
+  .login-container h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1976d2;
+    margin-bottom: 20px;
+  }
+  
+  /* Grupurile de câmpuri */
+  .form-group {
+    margin-bottom: 15px;
+    text-align: left; /* Etichetele sunt aliniate la stânga */
+  }
+  
+  /* Etichetele */
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Inputurile */
+  input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  input:focus {
+    border-color: #1976d2;
+    box-shadow: 0 0 4px rgba(25, 118, 210, 0.2);
+  }
+  
+  /* Butonul de submit */
+  .btn-submit {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #1976d2;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-submit:hover {
+    background-color: #155fa0;
+  }
+  
+  /* Stilizare suplimentară */
+  @media (max-width: 480px) {
+    .login-container {
+      padding: 15px;
+    }
+  
+    .btn-submit {
+      font-size: 14px;
+    }
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+  }

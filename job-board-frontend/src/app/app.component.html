@@ -1,0 +1,31 @@
+<nav class="navbar">
+  <!-- Butoane pentru joburi, vizibile doar dacă utilizatorul este autentificat -->
+  <div class="left-nav">
+    <button *ngIf="authService.isAuthenticated() | async" routerLink="/jobs" class="btn-nav">
+      My Jobs
+    </button>
+    <button routerLink="/external-jobs" class="btn-nav">
+      External Jobs
+    </button>
+    <button *ngIf="authService.isAuthenticated() | async" routerLink="/upload-cv" class="btn-nav">
+      Upload CV
+    </button>
+    <button *ngIf="authService.isAuthenticated() | async" routerLink="/app-dashboard" class="btn-nav">
+      Dashboard
+    </button>
+  </div>
+
+  <!-- Butoane pentru login/register/logout -->
+  <div class="right-nav">
+    <button *ngIf="!(authService.isAuthenticated() | async)" routerLink="/login" class="btn-nav">
+      Login
+    </button>
+    <button *ngIf="!(authService.isAuthenticated() | async)" routerLink="/register" class="btn-nav">
+      Register
+    </button>
+    <button *ngIf="authService.isAuthenticated() | async" (click)="logout()" class="btn-nav logout-btn">
+      Logout
+    </button>
+  </div>
+</nav>
+<router-outlet></router-outlet>

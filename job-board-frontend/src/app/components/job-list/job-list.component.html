@@ -1,0 +1,58 @@
+<div class="favorite-jobs-container">
+
+  <div *ngIf="isLoading" class="loading-spinner-container">
+    <div class="spinner"></div>
+  </div>
+
+  <div *ngIf="!isLoading && favoriteJobs.length === 0" class="no-jobs-message">
+    You have no favorite jobs.
+  </div>
+
+  <div *ngIf="!isLoading && favoriteJobs.length > 0">
+    <!-- Tabel neschimbat pentru grafic -->
+   <div *ngIf="!isLoading && userCvs.length > 0">
+    <div class="view-selector-container">
+      <label for="view-selector" class="select-label">Choose View Type:</label>
+      <select id="view-selector" [(ngModel)]="selectedView" (change)="onSelectionChange()" class="custom-select">
+        <option value="transformers">In-Depth Match</option>
+        <option value="keywords">Keyword Focus</option>
+      </select>
+    </div>
+
+    <div *ngIf="selectedView === 'transformers'">
+      <h3>Compatibility Scores (In-Depth Match)</h3>
+      <div class="chart-container">
+        <canvas id="transformers-chart"></canvas>
+      </div>
+    </div>
+
+    <div *ngIf="selectedView === 'keywords'">
+      <h3>Compatibility Scores (Keyword Focus)</h3>
+      <div class="chart-container">
+        <canvas id="keywords-chart"></canvas>
+      </div>
+     </div>
+    </div>
+    <!-- Design modernizat pentru joburi -->
+    <h2>My Saved Jobs</h2>
+    <div class="job-list">
+      <div *ngFor="let job of favoriteJobs" class="job-card">
+        <div class="job-header">
+          <img *ngIf="job.logo" [src]="job.logo" alt="{{ job.company }} logo" class="job-logo" />
+          <div class="job-info">
+            <h3>{{ job.title }}</h3>
+            <p>{{ job.company }}</p>
+            <p><strong>Location:</strong> {{ job.location }}</p>
+          </div>
+        </div>
+        <div class="job-description">
+          <p>{{ job.description || "No description available." }}</p>
+        </div>
+        <div class="job-actions">
+          <a [href]="job.url" target="_blank" class="view-details-button">View Details</a>
+          <button class="remove-button" (click)="deleteFavorite(job.id)">Remove</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
