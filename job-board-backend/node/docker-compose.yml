@@ -1,0 +1,60 @@
+services:
+  node-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: node-backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    volumes:
+      - ./uploads:/app/uploads # Mapare pentru fișierele încărcate
+    depends_on:
+      - postgres
+      - redis
+      - flask-app
+    networks:
+      - job-board-network
+
+  flask-app:
+    build:
+      context: ./../flask
+      dockerfile: Dockerfile
+    container_name: flask-app
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./uploads:/app/uploads # Mapare pentru fișierele încărcate
+    networks:
+      - job-board-network
+
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    environment:
+      POSTGRES_USER: ${PGUSER}
+      POSTGRES_PASSWORD: ${PGPASSWORD}
+      POSTGRES_DB: ${PGDATABASE}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - job-board-network
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - job-board-network
+
+volumes:
+  postgres_data:
+  uploads:
+
+networks:
+  job-board-network:
+    driver: bridge
