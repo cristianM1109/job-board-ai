@@ -1,0 +1,47 @@
+# Ignoră folderele generate automat de Node.js (Frontend și Backend)
+node_modules/
+npm-debug.log*
+yarn.lock
+package-lock.json
+
+# Ignoră fișierele generate de Angular
+.angular/
+dist/
+
+# Ignoră fișierele generate de Python (Flask)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+*.sqlite3
+*.db
+instance/
+.mypy_cache/
+temp/
+uploads/
+
+# Ignoră fișierele de configurare și cache
+.DS_Store
+*.swp
+.idea/
+.vscode/
+*.log
+*.bak
+
+# Ignoră fișierele de configurare pentru medii și variabile de mediu
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Ignoră fișierele Docker (dacă există containere)
+docker-compose.override.yml
+*.dockerfile
+
+# Ignoră rezultatele testelor și alte cache-uri
+coverage/
+cypress/screenshots/
+cypress/videos/
+jest-cache/
