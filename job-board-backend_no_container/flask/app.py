@@ -20,7 +20,7 @@ app = Flask(__name__)
 # Încarcă modelul Sentence Transformers
 transformer_model = SentenceTransformer('all-MiniLM-L6-v2')
 
-openai.api_key = "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"
+openai.api_key = "KEY"
 
 
 # Funcție pentru generarea recomandărilor folosind OpenAI GPT-3.5
